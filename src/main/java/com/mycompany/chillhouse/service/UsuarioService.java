@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 public class UsuarioService {
-    private final UsuarioRepository usuarioRepository;
+     private final UsuarioRepository usuarioRepository;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
@@ -18,11 +18,15 @@ public class UsuarioService {
 
     public Usuario registrarUsuario(String nombre, String email) {
         if (nombre == null || nombre.isBlank()) {
-            throw new IllegalArgumentException("El nombre es obligatorio");
+            throw new IllegalArgumentException(
+                    "El nombre es obligatorio"
+            );
         }
 
         if (email == null || email.isBlank()) {
-            throw new IllegalArgumentException("El email es obligatorio");
+            throw new IllegalArgumentException(
+                    "El email es obligatorio"
+            );
         }
 
         Usuario usuario = new Usuario(nombre, email);
@@ -36,5 +40,9 @@ public class UsuarioService {
 
     public Optional<Usuario> buscarUsuario(int id) {
         return usuarioRepository.buscarPorId(id);
+    }
+
+    public void eliminarUsuario(int id) {
+        usuarioRepository.eliminar(id);
     }
 }
